@@ -40,9 +40,11 @@ $productInfo = $productService->getProductInfoByOrderIds($orderIds);
 // Группировка продуктов по стеллажам
 $groupedProducts = $productService->groupProductsByShelves($productInfo);
 
+echo "=+=+=+=\n";
+echo "Страница сборки заказов $args \n";
+
 foreach ($groupedProducts as $shelfName => $shelfData) {
-    echo "=+=+=+=\n";
-    echo "Страница сборки заказов $args \n";
+
     echo "===Стеллаж $shelfName\n";
 
     foreach ($shelfData['products'] as $product) {
