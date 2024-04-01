@@ -6,7 +6,6 @@ require_once '../DataAccess/OrderRepository.php';
 use BusinessLogic\ProductService;
 use DataAccess\OrderRepository;
 
-// Подключение к базе данных
 $host = '127.0.0.1';
 $dbname = 'borisovatestdb';
 $username = 'postgres';
@@ -19,25 +18,20 @@ try {
     die("Ошибка подключения к базе данных: " . $e->getMessage());
 }
 
-// Проверка наличия аргументов
 if ($argc < 2) {
     die("Необходимо указать номера заказов\n");
 }
 
-// Получение номеров заказов из аргументов
 $args = $argv[1];
+
 $orderIds = explode(',', $args);
 
-// Создание экземпляра репозитория заказов
 $orderRepository = new OrderRepository($pdo);
 
-// Создание экземпляра сервиса продуктов с внедрением зависимости репозитория заказов
 $productService = new ProductService($orderRepository);
 
-// Получение информации о продуктах по указанным заказам
 $productInfo = $productService->getProductInfoByOrderIds($orderIds);
 
-// Группировка продуктов по стеллажам
 $groupedProducts = $productService->groupProductsByShelves($productInfo);
 
 echo "=+=+=+=\n";
