@@ -45,7 +45,6 @@ foreach ($groupedProducts as $shelfName => $shelfData) {
         echo $product['product_name'] . " (id=" . $product['product_id'] . ")\n";
         echo "заказ " . $product['order_id'] . ", " . $product['quantity'] . " шт\n";
 
-        // Проверяем наличие дополнительных стеллажей для текущего продукта
         if (!empty($product['additional_shelves'])) {
             echo "доп стеллаж: " . implode(',', $product['additional_shelves']) . "\n";
         }
